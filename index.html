@@ -175,8 +175,8 @@
     jsPsych.init({
       timeline: timeline,
         on_finish: function(){
-            saveData("ed"+ "_" + entry_number + "_" + participant_id + "_" + (Date.now()-start_time).toString(), jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
-            proliferate.submit(jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
+            //saveData("ed"+ "_" + entry_number + "_" + participant_id + "_" + (Date.now()-start_time).toString(), jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
+            proliferate.submit(jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}));
       }
     });
   </script>
