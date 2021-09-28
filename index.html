@@ -26,7 +26,8 @@
 	return result;
 	}
       var participant_id = formatted_date();
-      var entry_number = prompt("Please enter your entry number");
+      var entry_number = 1
+      //prompt("Bitte geben Sie eine beliebige Zahl ein.");
       var i=0,j=0;
       var limit = number_of_items.reduce(function(a, b){
                      return a + b;
@@ -45,12 +46,21 @@
 
     var instructions2 = {
       type: "html-keyboard-response",
-      stimulus: "<p> Press 1 if the sentence shown of the left side is more acceptible; press 7 if the sentence shown on the right side is more acceptible; press 4 if you are not sure </p>",
+      stimulus: "<p> Vielen Dank für Ihre Teilnahme an diesem Experiment. In diesem Experiment müssen Sie zwischen zwei Sätzen wählen, die auf dem Bildschirm angezeigt werden. Sie sollen den Satz wählen, den Sie akzeptabler finden, d. h. den Satz, der für Sie natürlicher und grammatikalischer klingt. </p>",
       choices: ['Enter'],
 
       post_trial_gap: 2000
     };
     timeline.push(instructions2);
+
+    var instructions3 = {
+      type: "html-keyboard-response",
+      stimulus: "<p> Zuerst sehen Sie ein + Zeichen auf dem Bildschirm. Wenn Sie die ENTER drücken, sehen Sie zwei Sätze auf dem Bildschirm, einen oben auf dem Bildschirm und den anderen unten. Wenn Sie der Meinung sind, dass der Satz oben akzeptabler ist, drücken Sie 1. Wenn der Satz unten akzeptabler ist, drücken Sie 7. Wenn Sie nicht sicher sind, welcher Satz besser ist, drücken Sie 4. <br> Es gibt keine zeitliche Begrenzung. Lesen Sie die Sätze sorgfältig durch und treffen Sie dann Ihre Entscheidung. </p>",
+      choices: ['Enter'],
+
+      post_trial_gap: 2000
+    };
+    timeline.push(instructions3);
 
     var fixation = {
       type: 'html-keyboard-response',
@@ -95,7 +105,7 @@
     }
     var training = {
       type: "html-keyboard-response",
-      stimulus: "<p> Practice trials instructions Press Enter to continue </p>",
+      stimulus: "<p> Das Experiment beginnt mit zwei Übungsdurchgängen, damit Sie das Experiment verstehen. </p>",
       choices: ['Enter'],
       post_trial_gap: 1000
     };
@@ -106,8 +116,8 @@
             type: "html-keyboard-response-ld",
             stimulus: '<p style="font-size:10px' + font_size + 'px; color:  ' + color + ' ;">' + plist[j][0] + '<br> 1 <br> <br> <br> 4 <br> <br> <br> 7 <br>' + plist[j][1] + '</p>',
             choices: ['1','4','7'],
-            correct_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Press ENTER' +'</p>',
-            incorrect_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Press ENTER' +'</p>',
+            correct_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Drücken Sie ENTER' +'</p>',
+            incorrect_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Drücken Sie ENTER' +'</p>',
             correct_choice: ['1','4','7'],
             data : {stimulus: plist[j][0]+'\t'+plist[j][1], Particpant_id:participant_id, Entry_Number: entry_number, Experiment_ID: plist[j][2], Item_ID : plist[j][3], Condition_ID : plist[j][4]}
         }
@@ -116,7 +126,7 @@
     }
     var endtraining = {
       type: "html-keyboard-response",
-      stimulus: "<ui><li> Main trials instruction </li>  </ui>",
+      stimulus: "<p> Übungstests enden hier. Jetzt beginnen wir mit dem Hauptexperiment. </p>",
       post_trial_gap: 1000
     };
     timeline.push(endtraining);
@@ -133,8 +143,8 @@
                 stimulus: '<p style="font-size:10px' + font_size + 'px; color:  ' + color + ' ;">' + templist[0] + '<br> 1 <br> <br> <br> 4 <br> <br> <br> 7 <br>' +templist[1] + '</p>',
                 choices: ['1','4','7'],
                 correct_choice: ['1','4','7'],
-                correct_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Press ENTER' +'</p>',
-                incorrect_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Press ENTER' +'</p>',
+                correct_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Drücken Sie ENTER' +'</p>',
+                incorrect_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Drücken Sie ENTER' +'</p>',
                 data : {stimulus: templist[0]+'\t'+templist[1], Particpant_id:participant_id, Entry_Number: entry_number, Experiment_ID: list[j][2], Item_ID : list[j][3], Condition_ID : condnew}
             }
             timeline.push(fixation);
@@ -152,10 +162,10 @@
       xhr.addEventListener("error", failure);
       download(data,name+".csv","file/csv");
       function success(evt) {
-          document.body.innerHTML = '<p style="margin:auto"> Thank you </p>';
+          document.body.innerHTML = '<p style="margin:auto"> Vielen Dank für die Teilnahme. </p>';
       }
       function failure(evt) {
-         document.body.innerHTML ='<p style="margin:auto"> Thank you </p>';
+         document.body.innerHTML ='<p style="margin:auto"> Vielen Dank für die Teilnahme. </p>';
       }
     }
     /* start the experiment */
