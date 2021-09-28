@@ -10,6 +10,8 @@
     <script src="jspsych-6/download.js"></script>
     <script src="specs_lexical_decision.js"></script>
     <script src="lists_lexical_decision.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://proliferate.alps.science/static/js/proliferate.js" type="text/javascript"></script>
     <!--<script src="download.js"></script>-->
     <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
@@ -172,7 +174,9 @@
     jsPsych.init({
       timeline: timeline,
         on_finish: function(){
-            saveData("ed"+ "_" + entry_number + "_" + participant_id + "_" + (Date.now()-start_time).toString(), jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
+            //saveData("ed"+ "_" + entry_number + "_" + participant_id + "_" + (Date.now()-start_time).toString(), jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
+            var exp.dat = "ed"+ "_" + entry_number + "_" + participant_id + "_" + (Date.now()-start_time).toString(), jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv()
+            proliferate.submit(exp.data);
       }
     });
   </script>
