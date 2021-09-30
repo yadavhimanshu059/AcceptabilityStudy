@@ -8,6 +8,7 @@
     <script src="jspsych-6/jspsych_1.js"></script>
     <script src="jspsych-6/plugins/jspsych-call-function.js"></script>
     <script src= "jspsych-6/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src= "jspsych-6/plugins/jspsych-html-button-response.js"></script>
     <script src= "jspsych-6/plugins/jspsych-html-keyboard-response-ld.js"></script>
     <script src= "jspsych-6/plugins/jspsych-survey-text.js"></script>
     <script src= "jspsych-6/plugins/jspsych-survey-multi-choice.js"></script>
@@ -41,23 +42,20 @@
 
     /* define instructions trial */
     var instructions = {
-      type: "html-keyboard-response",
+      type: "html-button-response",
       stimulus: "<p> Rechtliche Hinweise: Durch die Beantwortung der folgenden Fragen nehmen Sie an einer Studie teil, die von Wissenschaftler/inne/n des Department of Language Science an der Universität von Kalifornien, Irvine, durchgeführt wird. Wenn Sie Fragen zu dieser Studie haben, wenden Sie sich bitte an Richard Futrell (rfutrell@uci.edu). Sie müssen mindestens 18 Jahre alt sein, um teilnehmen zu können. Ihre Teilnahme an dieser Studie ist freiwillig. Sie können es ablehnen, einige oder alle der folgenden Fragen zu beantworten. Sie können die weitere Teilnahme jederzeit ohne nachteilige Folgen ablehnen, ohne dass Ihnen daraus Nachteile entstehen. Ihre Anonymität ist gewährleistet; die Forscher/innen, die Sie um Teilnahme bitten, erhalten keine persönlichen Daten von Ihnen. </p>",
-      choices: ['Enter'],
+      choices: ['Continue'],
 
       post_trial_gap: 1000
     };
     timeline.push(instructions);
 
     var instructions1 = {
-      type: "html-keyboard-response",
+      type: "html-button-response",
       stimulus: "<p> Bevor wir beginnen, möchten wir Ihnen ein paar Fragen stellen. </p>",
-      //var geo_location = prompt("Woher kommen Sie in Deutschland?");
-      //var subj_age = prompt("Wie alt sind Sie?"),
-      //var education = prompt("Was ist Ihr höchster Bildungsgrad?"),
-      //var dutch = prompt("Sprechen Sie niederländisch?"),
-      choices: ['Enter'],
-      post_trial_gap: 1000
+      choices: ['Continue'],
+
+      post_trial_gap: 500
     };
     timeline.push(instructions1);
 
@@ -67,6 +65,8 @@
         {prompt: "Wie alt sind Sie?", name: 'age'},
         {prompt: "Woher kommen Sie in Deutschland?", name: 'birthlocation'}
       ],
+
+      post_trial_gap: 500
     };
     timeline.push(survey_trial);
 
@@ -76,24 +76,26 @@
         {prompt: "Was ist Ihr höchster Bildungsgrad?", name: 'education', options: ["Sekundarstufe I", "Sekundarstufe II", "Bachelor", "Master", "Promotion"], required: false},
         {prompt: "Sprechen Sie niederländisch?", name: 'dutch', options: ["Yes","No"], required: false}
       ],
+
+      post_trial_gap: 500
     };
     timeline.push(multi_choice_block);
 
     var instructions2 = {
-      type: "html-keyboard-response",
+      type: "html-button-response",
       stimulus: "<p> Vielen Dank für Ihre Teilnahme an diesem Experiment. In diesem Experiment müssen Sie zwischen zwei Sätzen wählen, die auf dem Bildschirm angezeigt werden. Sie sollen den Satz wählen, den Sie akzeptabler finden, d. h. den Satz, der für Sie natürlicher und grammatikalischer klingt. </p>",
-      choices: ['Enter'],
+      choices: ['Continue'],
 
-      post_trial_gap: 1000
+      post_trial_gap: 500
     };
     timeline.push(instructions2);
 
     var instructions3 = {
-      type: "html-keyboard-response",
+      type: "html-button-response",
       stimulus: "<p> Zuerst sehen Sie ein + Zeichen auf dem Bildschirm. Wenn Sie die ENTER drücken, sehen Sie zwei Sätze auf dem Bildschirm, einen oben auf dem Bildschirm und den anderen unten. Wenn Sie der Meinung sind, dass der Satz oben akzeptabler ist, drücken Sie 1. Wenn der Satz unten akzeptabler ist, drücken Sie 7. Wenn Sie nicht sicher sind, welcher Satz besser ist, drücken Sie 4. <br> Es gibt keine zeitliche Begrenzung. Lesen Sie die Sätze sorgfältig durch und treffen Sie dann Ihre Entscheidung. </p>",
-      choices: ['Enter'],
+      choices: ['Continue'],
 
-      post_trial_gap: 1000
+      post_trial_gap: 500
     };
     timeline.push(instructions3);
 
@@ -139,9 +141,9 @@
         }
     }
     var training = {
-      type: "html-keyboard-response",
+      type: "html-button-response",
       stimulus: "<p> Das Experiment beginnt mit zwei Übungsdurchgängen, damit Sie das Experiment verstehen. </p>",
-      choices: ['Enter'],
+      choices: ['Continue'],
       post_trial_gap: 1000
     };
     timeline.push(training);
@@ -160,8 +162,9 @@
         timeline.push(trial_p3);
     }
     var endtraining = {
-      type: "html-keyboard-response",
+      type: "html-button-response",
       stimulus: "<p> Übungstests enden hier. Jetzt beginnen wir mit dem Hauptexperiment. </p>",
+      choices: ['Continue'],
       post_trial_gap: 1000
     };
     timeline.push(endtraining);
