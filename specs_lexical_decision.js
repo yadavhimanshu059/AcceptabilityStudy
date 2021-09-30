@@ -1,4 +1,4 @@
-var number_of_items = [5];
+var number_of_items = [8];
 var number_of_fillers = 0;
 var number_of_pracitem = 1;
 var number_of_non_words = 0;

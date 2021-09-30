@@ -116,7 +116,7 @@ if(number_of_non_words!= 0):
 
 if(number_of_pracitem!= 0):
     with open("practice.txt", "r",encoding='utf8') as input:
-        allprac = input.read().split("\n")
+        allprac = input.read().split("\n\n")
     all_prac=[]
     count=0
     for i in range (number_of_pracitem):
