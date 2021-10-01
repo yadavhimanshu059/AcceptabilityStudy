@@ -62,8 +62,8 @@
     var survey_trial = {
       type: 'survey-text',
       questions: [
-        {prompt: "Wie alt sind Sie?", name: 'age'},
-        {prompt: "Woher kommen Sie in Deutschland?", name: 'birthlocation'}
+        {prompt: "Wie alt sind Sie?", name: 'age', required: true},
+        {prompt: "In welcher Region Deutschlands sind Sie aufgewachsen?", name: 'birthlocation', required: true}
       ],
 
       post_trial_gap: 500
@@ -73,8 +73,8 @@
     var multi_choice_block = {
       type: 'survey-multi-choice',
       questions: [
-        {prompt: "Was ist Ihr höchster Bildungsgrad?", name: 'education', options: ["Sekundarstufe I", "Sekundarstufe II", "Bachelor", "Master", "Promotion"], required: false},
-        {prompt: "Sprechen Sie niederländisch?", name: 'dutch', options: ["Yes","No"], required: false}
+        {prompt: "Was ist Ihr höchster Bildungsgrad?", name: 'education', options: ["Sekundarstufe I", "Sekundarstufe II", "Bachelor", "Master", "Promotion","Andere"], required: true},
+        {prompt: "Sprechen Sie niederländisch?", name: 'dutch', options: ["Ja","Nein"], required: true}
       ],
 
       post_trial_gap: 500
@@ -83,7 +83,7 @@
 
     var instructions2 = {
       type: "html-button-response",
-      stimulus: "<p> Vielen Dank für Ihre Teilnahme an diesem Experiment. In diesem Experiment müssen Sie zwischen zwei Sätzen wählen, die auf dem Bildschirm angezeigt werden. Sie sollen den Satz wählen, den Sie akzeptabler finden, d. h. den Satz, der für Sie natürlicher und grammatikalischer klingt. </p>",
+      stimulus: "<p> Vielen Dank für Ihre Teilnahme an diesem Experiment. In diesem Experiment müssen Sie zwischen zwei Sätzen wählen, die auf dem Bildschirm angezeigt werden. Sie sollen den Satz wählen, den Sie akzeptabler finden, d. h. den Satz, der für Sie natürlicher klingt. </p>",
       choices: ['Continue'],
 
       post_trial_gap: 500
