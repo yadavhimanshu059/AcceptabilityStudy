@@ -62,8 +62,8 @@
     var survey_trial = {
       type: 'survey-text',
       questions: [
-        {prompt: "Wie alt sind Sie?", name: 'age', required: true},
-        {prompt: "In welcher Region Deutschlands sind Sie aufgewachsen?", name: 'birthlocation', required: true}
+        {prompt: "Wie alt sind Sie?", name: 'age'},
+        {prompt: "In welcher Region Deutschlands sind Sie aufgewachsen?", name: 'birthlocation'}
       ],
 
       post_trial_gap: 500
@@ -73,8 +73,8 @@
     var multi_choice_block = {
       type: 'survey-multi-choice',
       questions: [
-        {prompt: "Was ist Ihr höchster Bildungsgrad?", name: 'education', options: ["Sekundarstufe I", "Sekundarstufe II", "Bachelor", "Master", "Promotion","Andere"], required: true},
-        {prompt: "Sprechen Sie niederländisch?", name: 'dutch', options: ["Ja","Nein"], required: true}
+        {prompt: "Was ist Ihr höchster Bildungsgrad?", name: 'education', options: ["Sekundarstufe I", "Sekundarstufe II", "Bachelor", "Master", "Promotion","Andere"], required: false},
+        {prompt: "Sprechen Sie niederländisch?", name: 'dutch', options: ["Ja","Nein"], required: false}
       ],
 
       post_trial_gap: 500
@@ -142,7 +142,7 @@
     }
     var training = {
       type: "html-button-response",
-      stimulus: "<p> Das Experiment beginnt mit zwei Übungsdurchgängen, damit Sie das Experiment verstehen. </p>",
+      stimulus: "<p> Das Experiment beginnt mit einem Übungsversuch, damit Sie das Experiment verstehen. </p>",
       choices: ['Continue'],
       post_trial_gap: 1000
     };
