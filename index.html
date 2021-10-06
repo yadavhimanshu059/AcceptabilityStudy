@@ -234,7 +234,7 @@
             //proliferate.submit(jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
             //proliferate.submit(jsPsych.data.get().filter({trial_type: 'survey-text'}).json());
             //proliferate.submit(jsPsych.data.get().filter({trial_type: 'survey-multi-choice'}).json());
-            proliferate.submit({"trials": data.values()});
+            proliferate.submit({"trials": jsPsych.data.values()});
       }
     });
   </script>
