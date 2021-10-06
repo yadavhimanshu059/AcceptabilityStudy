@@ -77,21 +77,13 @@
       type: 'survey-text',
       questions: [
         {prompt: "Wie alt sind Sie?", name: 'age'},
+        {prompt: "In welcher Region Deutschlands sind Sie aufgewachsen?", name: 'birthlocation'}
       ],
       post_trial_gap: 500
     };
     timeline.push(demo1);
 
     var demo2 = {
-      type: 'survey-text',
-      questions: [
-        {prompt: "In welcher Region Deutschlands sind Sie aufgewachsen?", name: 'birthlocation'}
-      ],
-      post_trial_gap: 500
-    };
-    timeline.push(demo2);
-
-    var demo3 = {
       type: 'survey-multi-choice',
       questions: [
         {prompt: "Was ist Ihr höchster Bildungsgrad?", name: 'education', options: ["Sekundarstufe I", "Sekundarstufe II", "Bachelor", "Master", "Promotion","Andere"], required: false},
@@ -99,7 +91,7 @@
       ],
       post_trial_gap: 500
     };
-    timeline.push(demo3);
+    timeline.push(demo2);
 
     var instructions2 = {
       type: "html-button-response",
