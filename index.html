@@ -21,16 +21,30 @@
   </head>
   <body></body>
   <script>
+      //var jsPsych = initJsPsych();
+
+      // capture info from Prolific
+      var subject_id = jsPsych.data.getURLVariable('PROLIFIC_PID');
+      var study_id = jsPsych.data.getURLVariable('STUDY_ID');
+      var session_id = jsPsych.data.getURLVariable('SESSION_ID');
+
+      jsPsych.data.addProperties({
+      subject_id: subject_id,
+      study_id: study_id,
+      session_id: session_id
+      });
+
       var timeline = [];
       var repeat_prac = false;
       var start_time = Date.now();
       /// participant id is decided
       function formatted_date(){
-	var result="";
-	var d = new Date();
-	result += d.getDate().toString()+(d.getMonth()+1).toString()+d.getFullYear().toString()+d.getHours().toString()+d.getMinutes().toString();
-	return result;
-	}
+      	var result="";
+      	var d = new Date();
+      	result += d.getDate().toString()+(d.getMonth()+1).toString()+d.getFullYear().toString()+d.getHours().toString()+d.getMinutes().toString();
+      	return result;
+    	}
+
       var participant_id = formatted_date();
       var entry_number = 1
       //prompt("Bitte geben Sie eine beliebige Zahl ein.");
@@ -59,27 +73,33 @@
     };
     timeline.push(instructions1);
 
-    var survey_trial = {
+    var demo1 = {
       type: 'survey-text',
       questions: [
         {prompt: "Wie alt sind Sie?", name: 'age'},
-        {prompt: "In welcher Region Deutschlands sind Sie aufgewachsen?", name: 'birthlocation'}
       ],
-
       post_trial_gap: 500
     };
-    timeline.push(survey_trial);
+    timeline.push(demo1);
 
-    var multi_choice_block = {
+    var demo2 = {
+      type: 'survey-text',
+      questions: [
+        {prompt: "In welcher Region Deutschlands sind Sie aufgewachsen?", name: 'birthlocation'}
+      ],
+      post_trial_gap: 500
+    };
+    timeline.push(demo2);
+
+    var demo3 = {
       type: 'survey-multi-choice',
       questions: [
         {prompt: "Was ist Ihr höchster Bildungsgrad?", name: 'education', options: ["Sekundarstufe I", "Sekundarstufe II", "Bachelor", "Master", "Promotion","Andere"], required: false},
         {prompt: "Sprechen Sie niederländisch?", name: 'dutch', options: ["Ja","Nein"], required: false}
       ],
-
       post_trial_gap: 500
     };
-    timeline.push(multi_choice_block);
+    timeline.push(demo3);
 
     var instructions2 = {
       type: "html-button-response",
@@ -168,6 +188,7 @@
       post_trial_gap: 1000
     };
     timeline.push(endtraining);
+
         ln=list_number%number_of_lists
         var list = shuffle(lists[ln],choiceofe)
         for(j=0;j<(limit+number_of_fillers);j++){
@@ -183,7 +204,7 @@
                 correct_choice: ['1','4','7'],
                 correct_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Drücken Sie ENTER' +'</p>',
                 incorrect_text:'<p style="font-size:' + font_size + 'px; color:black ;">' + 'Drücken Sie ENTER' +'</p>',
-                data : {stimulus: templist[0]+'\t'+templist[1], Particpant_id:participant_id, Entry_Number: entry_number,  Experiment_ID: list[j][2], Item_ID : list[j][3], Condition_ID : condnew}
+                data : {stimulus: templist[0]+' '+templist[1], Particpant_id:participant_id, Entry_Number: entry_number,  Experiment_ID: list[j][2], Item_ID : list[j][3], Condition_ID : condnew}
             }
             timeline.push(fixation);
             timeline.push(trial_3);
@@ -216,8 +237,11 @@
     jsPsych.init({
       timeline: timeline,
         on_finish: function(){
-            //saveData("ed"+ "_" + entry_number + "_" + participant_id + "_" + (Date.now()-start_time).toString(), jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
-            proliferate.submit(jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).json());
+            //saveData("ed"+ "_" + entry_number + "_" + participant_id + "_" + (Date.now()-start_time).toString(), jsPsych.data.get().filter([{trial_type: 'html-keyboard-response-ld'},{trial_type: 'survey-text'},{trial_type: 'survey-multi-choice'}]).json());
+            proliferate.submit(jsPsych.data.get().filter([{trial_type: 'html-keyboard-response-ld'},{trial_type: 'survey-text'},{trial_type: 'survey-multi-choice'}]).json());
+            //proliferate.submit(jsPsych.data.get().filter({trial_type: 'html-keyboard-response-ld'}).csv());
+            //proliferate.submit(jsPsych.data.get().filter({trial_type: 'survey-text'}).json());
+            //proliferate.submit(jsPsych.data.get().filter({trial_type: 'survey-multi-choice'}).json());
       }
     });
   </script>
